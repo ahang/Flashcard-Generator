@@ -6,3 +6,7 @@ var batman = new BasicCard("Batman is an orphan", "Orphan");
 
 console.log(superman);
 console.log(batman);
+
+console.log(superman);
+superman.clozeDel();
+superman.fullText();
