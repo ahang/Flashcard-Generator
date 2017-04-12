@@ -1,0 +1,8 @@
+var questions = [
+{
+	"Bruce Wayne's alter ego Batman fights villians"
+	"Batman"
+}
+];
+
+console.log(questions);

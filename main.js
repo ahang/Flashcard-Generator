@@ -1,9 +1,12 @@
 var BasicCard = require("./basic.js");
 var ClozeCard = require("./cloze.js");
 
-var superman = new ClozeCard("Superman was a kryptonian alien", "kryptonian");
-var spiderman = new ClozeCard("Peter Parker is spiderman", "spiderman");
-var batman = new BasicCard("Batman is ...", "Bruce Wayne");
+var superman = ClozeCard("Superman was a kryptonian alien", "kryptonian");
+var spiderman = ClozeCard("Peter Parker is spiderman", "spiderman");
+var batman = new BasicCard("Who is batman?", "Bruce Wayne");
+
+console.log(batman.front);
+console.log(batman.back);
 
 console.log(superman);
 console.log(batman);
