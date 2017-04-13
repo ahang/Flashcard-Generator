@@ -1,4 +1,4 @@
-#Flash Card Generator
+# Flash Card Generator
 
 ### About
 Creating a backend for a basic flashcard application via command line interface. Allows users to play two different flashcards. Basic Flash Cards, which have a front and a back. Cloze-Deleted flashcards which present partial text and the full text upon completition of the answer.
