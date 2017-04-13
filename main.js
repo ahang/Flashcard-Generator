@@ -62,6 +62,8 @@ var basicGame = function() {
                 console.log("That is incorrect. " + "'" + basicBack + "'" + "is the correct answer.");
                 questionsIncorrect++;
             }
+            basicCount++;
+            basicGame();
         });
     } else {
         console.log("========================================");
