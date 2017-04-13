@@ -1,5 +1,5 @@
 exports.qCloze = {
-	"Batman is Bruce Wayne": "Batman",
+	"Batman is Bruce Wayne.": "Batman",
 	"Damian Wayne is the child of Bruce Wayne and Talia al Ghul. He also takes on the identity of Robin.": "Talia al Ghul",
 	"The upcoming Justice League movie consists of Superman?, Batman, Wonder Woman, Flash, Aquaman and Cyborg.": "Wonder Woman",
 	"Harvey Dent uses a double-headed coin as his favorite possession.": "headed",

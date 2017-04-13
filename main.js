@@ -54,14 +54,15 @@ var basicGame = function() {
             message: basicConstruct.front
         }]).then(function(response) {
             //console.log(response);
-            if (response.question === basicConstruct.back) {
-                console.log("========================================");
+            //handling user input better. making sure answer is similar to the answer and triming unecessary spaces.
+            var ans = response.question.toLowerCase().trim();
+            if (ans === basicConstruct.back.toLowerCase()) {
                 console.log("That is correct. " + "'" + basicConstruct.back + "'" + "is the correct answer.");
                 console.log("========================================");
                 questionsCorrect++;
             } else {
-                console.log("========================================");
                 console.log("That is incorrect. " + "'" + basicConstruct.back + "'" + "is the correct answer.");
+                console.log("========================================");
                 questionsIncorrect++;
             }
             basicCount++;
@@ -98,14 +99,13 @@ var clozeGame = function() {
             name: "question",
             message: construct.partialText
         }]).then(function(response) {
+            var ans = response.question.toLowerCase().trim();
             //console.log(response);
-            if (response.question === construct.cloze) {
-                console.log("========================================");
+            if (ans === construct.cloze.toLowerCase()) {
                 console.log("That is correct. " + construct.partialText.replace("...", "'" + construct.cloze + "'"));
                 console.log("========================================");
                 questionsCorrect++;
             } else {
-                console.log("========================================");
                 console.log("That is not correct. " + construct.partialText.replace("...", "'" + construct.cloze + "'"));
                 console.log("========================================");
                 questionsIncorrect++;
