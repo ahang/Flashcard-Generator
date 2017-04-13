@@ -28,10 +28,10 @@ var startGame = function() {
         //console.log(answers);
 
         if (answers.card === "BasicCard") {
-            console.log("This is starting a new inquirer prompt for BasicCard");
+           // console.log("This is starting a new inquirer prompt for BasicCard");
             basicGame();
         } else {
-            console.log("This is going to start a new inquirer prompt for ClozeCard");
+           // console.log("This is going to start a new inquirer prompt for ClozeCard");
             clozeGame();
         }
     });
@@ -40,6 +40,7 @@ var startGame = function() {
 var basicCount = 0;
 
 var basicGame = function() {
+    //using Object.keys and .values to set the variables and creating a new constructor from BasicCard
     var basicFirst = Object.keys(flashCards.qBasic)[basicCount];
     //console.log(basicConstruct);
     var basicSecond = Object.values(flashCards.qBasic)[basicCount];
@@ -48,11 +49,12 @@ var basicGame = function() {
     //console.log(basicConstruct.front);
     //console.log(basicConstruct.back);
 
+    //making sure the inquirer prompt doesnt exceed beyond the 7 questions available
     if (basicCount < 6) {
         inquirer.prompt([
             {
                 name: "question",
-                message: basicConstruct.front
+                message: basicConstruct.front 
             }
         ]).then(function(response) {
             //console.log(response);
@@ -70,6 +72,7 @@ var basicGame = function() {
             basicGame();
         });
     } else {
+        //Once counter reaches 6 then end the game and display scores
         console.log("========================================");
         console.log("Basic Game Completed");
         console.log("Correct Questions Answered " + questionsCorrect);
@@ -85,6 +88,7 @@ var clozeCount = 0;
 var clozeGame = function() {
     //console.log("The count is " + clozeCount);
     //console.log(qCloze);
+    //using object.keys and values to set the variables and creating a new constructor from ClozeCard
     var first = Object.keys(flashCards.qCloze)[clozeCount];
     var second = Object.values(flashCards.qCloze)[clozeCount];
     var construct = ClozeCard(first, second);
@@ -92,6 +96,7 @@ var clozeGame = function() {
    // console.log(first);
 
     // console.log(newQ);
+    //making sure counter doesnt exceed 6
     if (clozeCount < 6) {
         inquirer.prompt([
         {
@@ -115,6 +120,7 @@ var clozeGame = function() {
             clozeGame();
         });
     } else {
+        //else game ends and displays score
         console.log("========================================");
         console.log("Cloze Game Completed");
         console.log("Correct Questions Answered " + questionsCorrect);
@@ -124,9 +130,11 @@ var clozeGame = function() {
     }
 }
 
+//starting game on typing node main.js
 startGame();
 
 var playAgain = function() {
+    //checks to see if the user wants to play again
     inquirer.prompt([
         {
             name: "playAgain",
@@ -137,6 +145,7 @@ var playAgain = function() {
     ]).then(function(response) {
         //console.log(response);
         if (response.playAgain === "Yes") {
+            //setting all global vars to 0
             clozeCount = 0;
             questionsCorrect = 0;
             questionsIncorrect = 0;
