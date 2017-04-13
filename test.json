@@ -1,8 +1,0 @@
-var questions = [
-	{
-		front: "Cable is the son of Clyops.",
-		back: "Cable"
-	}
-];
-
-console.log(questions);
