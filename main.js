@@ -8,12 +8,6 @@ var flashCards = require("./clozejson.js");
 var inquirer = require("inquirer");
 var fs = require("fs");
 
-
-var qCloze = {
-    "Batman is Bruce Wayne": "Batman",
-    "Damian Wayne is the child of Bruce Wayne and Talia al Ghul. He also takes on the identity of Robin.": "Talia al Ghul"
-};
-
 console.log(qCloze);
 var startGame = function() {
     inquirer.prompt([
@@ -41,32 +35,49 @@ var basicGame = function() {
 
 }
 
-var count = 0;
+var clozeCount = 0;
+var questionsCorrect = 0;
+var questionsIncorrect = 0;
+
 var clozeGame = function() {
-    console.log("The count is " + count);
-    console.log(qCloze);
-    var first = Object.keys(flashCards.qCloze)[count];
-    var second = Object.values(flashCards.qCloze)[count];
+    //console.log("The count is " + clozeCount);
+    //console.log(qCloze);
+    var first = Object.keys(flashCards.qCloze)[clozeCount];
+    var second = Object.values(flashCards.qCloze)[clozeCount];
     var construct = ClozeCard(first, second);
     //console.log(construct.partialText);
    // console.log(first);
 
     // console.log(newQ);
-    inquirer.prompt([
-    {
-        name: "question",
-        message: construct.partialText
-    }
-    ]).then(function(response) {
-        console.log(response);
-        if (response.question === second){
-            console.log("Yes!!");
-        } else {
-            console.log("NO!!");
+    if (clozeCount < 6) {
+        inquirer.prompt([
+        {
+            name: "question",
+            message: construct.partialText
         }
-        count++;
-        clozeGame();
-    });
+        ]).then(function(response) {
+            console.log(response);
+            if (response.question === second){
+                console.log("========================================");
+                console.log("That is correct. " + construct.partialText.replace("...", "'" + second + "'"));
+                console.log("========================================");
+                questionsCorrect++;
+            } else {
+                console.log("========================================");
+                console.log("That is not correct. " + construct.partialText.replace("...", "'" + second + "'"));
+                console.log("========================================");
+                questionsIncorrect++;
+            }
+            clozeCount++;
+            clozeGame();
+        });
+    } else {
+        console.log("========================================");
+        console.log("Game Completed");
+        console.log("Correct Questions Answered " + questionsCorrect);
+        console.log("Incorrect Questions Answered " + questionsIncorrect);
+        console.log("========================================");
+    }
 }
 
 //obj.keys
