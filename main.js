@@ -5,6 +5,8 @@ var flashCards = require("./cards.js");
 var inquirer = require("inquirer");
 var fs = require("fs");
 
+//console.log(flashCards.qBasic);
+
 //========Global Var========//
 var questionsCorrect = 0;
 var questionsIncorrect = 0;
@@ -23,7 +25,7 @@ var startGame = function() {
             choices: ["ClozeCard", "BasicCard"]
         }
     ]).then(function(answers) {
-        console.log(answers);
+        //console.log(answers);
 
         if (answers.card === "BasicCard") {
             console.log("This is starting a new inquirer prompt for BasicCard");
@@ -35,31 +37,33 @@ var startGame = function() {
     });
 }; 
 
-startGame();
-
 var basicCount = 0;
 
 var basicGame = function() {
-    var basicFront = Object.keys(flashCards.qBasic)[basicCount];
-    var basicBack = Object.values(flashCards.qBasic)[basicCount];
-    var basicConstruct = BasicCard[basicFront, basicBack];
+    var basicFirst = Object.keys(flashCards.qBasic)[basicCount];
+    //console.log(basicConstruct);
+    var basicSecond = Object.values(flashCards.qBasic)[basicCount];
+    //console.log(basicConstruct);
+    var basicConstruct = BasicCard(basicFirst, basicSecond);
+    //console.log(basicConstruct.front);
+    //console.log(basicConstruct.back);
 
     if (basicCount < 6) {
         inquirer.prompt([
             {
                 name: "question",
-                message: basicCount
+                message: basicConstruct.front
             }
         ]).then(function(response) {
-            console.log(response);
-            if(response.question === basicBack) {
+            //console.log(response);
+            if(response.question === basicConstruct.back) {
                 console.log("========================================");
-                console.log("That is correct. " + "'" + basicBack + "'" + "is the correct answer.");
+                console.log("That is correct. " + "'" + basicConstruct.back + "'" + "is the correct answer.");
                 console.log("========================================");
                 questionsCorrect++;
             } else {
                 console.log("========================================");
-                console.log("That is incorrect. " + "'" + basicBack + "'" + "is the correct answer.");
+                console.log("That is incorrect. " + "'" + basicConstruct.back + "'" + "is the correct answer.");
                 questionsIncorrect++;
             }
             basicCount++;
@@ -71,6 +75,7 @@ var basicGame = function() {
         console.log("Correct Questions Answered " + questionsCorrect);
         console.log("Incorrect Questions Answered " + questionsIncorrect);
         console.log("========================================");
+        playAgain();
     }
 }
 
@@ -94,15 +99,15 @@ var clozeGame = function() {
             message: construct.partialText
         }
         ]).then(function(response) {
-            console.log(response);
-            if (response.question === second){
+            //console.log(response);
+            if (response.question === construct.cloze){
                 console.log("========================================");
-                console.log("That is correct. " + construct.partialText.replace("...", "'" + second + "'"));
+                console.log("That is correct. " + construct.partialText.replace("...", "'" + construct.cloze + "'"));
                 console.log("========================================");
                 questionsCorrect++;
             } else {
                 console.log("========================================");
-                console.log("That is not correct. " + construct.partialText.replace("...", "'" + second + "'"));
+                console.log("That is not correct. " + construct.partialText.replace("...", "'" + construct.cloze + "'"));
                 console.log("========================================");
                 questionsIncorrect++;
             }
@@ -115,7 +120,32 @@ var clozeGame = function() {
         console.log("Correct Questions Answered " + questionsCorrect);
         console.log("Incorrect Questions Answered " + questionsIncorrect);
         console.log("========================================");
+        playAgain();
     }
+}
+
+startGame();
+
+var playAgain = function() {
+    inquirer.prompt([
+        {
+            name: "playAgain",
+            type: "list",
+            message: "Would you like to play a different card game?",
+            choices: ["Yes", "No"]
+        }
+    ]).then(function(response) {
+        //console.log(response);
+        if (response.playAgain === "Yes") {
+            clozeCount = 0;
+            questionsCorrect = 0;
+            questionsIncorrect = 0;
+            basicCount = 0;
+            startGame();
+        } else {
+            console.log("Good Day");
+        }
+    });
 }
 
 //obj.keys
