@@ -1,7 +1,7 @@
 var BasicCard = require("./basic.js");
 var ClozeCard = require("./cloze.js");
-//var clozeCards = require("./clozejson.js");
-
+var flashCards = require("./clozejson.js");
+//console.log(flashCards.qCloze);
 //console.log(cCards);
 //console.log(Object.keys(clozeCards));
 
@@ -45,8 +45,8 @@ var count = 0;
 var clozeGame = function() {
     console.log("The count is " + count);
     console.log(qCloze);
-    var first = Object.keys(qCloze)[count];
-    var second = Object.values(qCloze)[count];
+    var first = Object.keys(flashCards.qCloze)[count];
+    var second = Object.values(flashCards.qCloze)[count];
     var construct = ClozeCard(first, second);
     //console.log(construct.partialText);
    // console.log(first);
