@@ -14,6 +14,6 @@ exports.qBasic = {
 	"What is Bastion's tiny yellow bird friend named?": "Ganymede",
 	"Who is Zenyatta's pupil?": "Genji",
 	"D.va was a professional player in what game?": "Starcraft",
-	"What diseas is Tracer affected by?": "Chronal Disassociation",
+	"What disease is Tracer affected by?": "Chronal Disassociation",
 	"What is Mei's Robot Companion called?": "Snowball"
 }

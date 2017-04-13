@@ -17,25 +17,23 @@ var questionsIncorrect = 0;
 //console.log(qCloze);
 
 var startGame = function() {
-    inquirer.prompt([
-        {
-            name: "card",
-            type: "list",
-            message: "What type of Card game would you like to play?",
-            choices: ["ClozeCard", "BasicCard"]
-        }
-    ]).then(function(answers) {
+    inquirer.prompt([{
+        name: "card",
+        type: "list",
+        message: "What type of Card game would you like to play?",
+        choices: ["ClozeCard", "BasicCard"]
+    }]).then(function(answers) {
         //console.log(answers);
 
         if (answers.card === "BasicCard") {
-           // console.log("This is starting a new inquirer prompt for BasicCard");
+            // console.log("This is starting a new inquirer prompt for BasicCard");
             basicGame();
         } else {
-           // console.log("This is going to start a new inquirer prompt for ClozeCard");
+            // console.log("This is going to start a new inquirer prompt for ClozeCard");
             clozeGame();
         }
     });
-}; 
+};
 
 var basicCount = 0;
 
@@ -51,14 +49,12 @@ var basicGame = function() {
 
     //making sure the inquirer prompt doesnt exceed beyond the 7 questions available
     if (basicCount < 6) {
-        inquirer.prompt([
-            {
-                name: "question",
-                message: basicConstruct.front 
-            }
-        ]).then(function(response) {
+        inquirer.prompt([{
+            name: "question",
+            message: basicConstruct.front
+        }]).then(function(response) {
             //console.log(response);
-            if(response.question === basicConstruct.back) {
+            if (response.question === basicConstruct.back) {
                 console.log("========================================");
                 console.log("That is correct. " + "'" + basicConstruct.back + "'" + "is the correct answer.");
                 console.log("========================================");
@@ -93,19 +89,17 @@ var clozeGame = function() {
     var second = Object.values(flashCards.qCloze)[clozeCount];
     var construct = ClozeCard(first, second);
     //console.log(construct.partialText);
-   // console.log(first);
+    // console.log(first);
 
     // console.log(newQ);
     //making sure counter doesnt exceed 6
     if (clozeCount < 6) {
-        inquirer.prompt([
-        {
+        inquirer.prompt([{
             name: "question",
             message: construct.partialText
-        }
-        ]).then(function(response) {
+        }]).then(function(response) {
             //console.log(response);
-            if (response.question === construct.cloze){
+            if (response.question === construct.cloze) {
                 console.log("========================================");
                 console.log("That is correct. " + construct.partialText.replace("...", "'" + construct.cloze + "'"));
                 console.log("========================================");
@@ -135,14 +129,12 @@ startGame();
 
 var playAgain = function() {
     //checks to see if the user wants to play again
-    inquirer.prompt([
-        {
-            name: "playAgain",
-            type: "list",
-            message: "Would you like to play a different card game?",
-            choices: ["Yes", "No"]
-        }
-    ]).then(function(response) {
+    inquirer.prompt([{
+        name: "playAgain",
+        type: "list",
+        message: "Would you like to play a different card game?",
+        choices: ["Yes", "No"]
+    }]).then(function(response) {
         //console.log(response);
         if (response.playAgain === "Yes") {
             //setting all global vars to 0
@@ -158,7 +150,6 @@ var playAgain = function() {
 }
 
 //obj.keys
-
 
 
 
