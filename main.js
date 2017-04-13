@@ -4,7 +4,6 @@ var ClozeCard = require("./cloze.js");
 var flashCards = require("./cards.js");
 var inquirer = require("inquirer");
 //var fs = require("fs");
-
 //console.log(flashCards.qBasic);
 
 //========Global Var========//
