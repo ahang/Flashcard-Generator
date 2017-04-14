@@ -86,7 +86,7 @@ var clozeGame = function() {
     //console.log("The count is " + clozeCount);
     //console.log(qCloze);
     //using object.keys and values to set the variables and creating a new constructor from ClozeCard
-    var clozeLength = Object.keys(flashCards.qCloze).length;
+    //var clozeLength = Object.keys(flashCards.qCloze).length;
     var first = Object.keys(flashCards.qCloze)[clozeCount];
     var second = Object.values(flashCards.qCloze)[clozeCount];
     var construct = ClozeCard(first, second);
@@ -95,7 +95,7 @@ var clozeGame = function() {
 
     // console.log(newQ);
     //making sure counter doesnt exceed 6
-    if (clozeCount < clozeLength) {
+    if (clozeCount < 6) {
         inquirer.prompt([{
             name: "question",
             message: construct.partialText
