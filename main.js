@@ -23,7 +23,6 @@ var startGame = function() {
         choices: ["ClozeCard", "BasicCard"]
     }]).then(function(answers) {
         //console.log(answers);
-
         if (answers.card === "BasicCard") {
             // console.log("This is starting a new inquirer prompt for BasicCard");
             basicGame();
@@ -37,18 +36,19 @@ var startGame = function() {
 var basicCount = 0;
 
 var basicGame = function() {
-    //using Object.keys and .values to set the variables and creating a new constructor from BasicCard
+    //getting the length of the qBaisc object!
     var basicLength = Object.keys(flashCards.qBasic).length;
-    var basicFirst = Object.keys(flashCards.qBasic)[basicCount];
-    //console.log(basicConstruct);
-    var basicSecond = Object.values(flashCards.qBasic)[basicCount];
-    //console.log(basicConstruct);
-    var basicConstruct = BasicCard(basicFirst, basicSecond);
-    //console.log(basicConstruct.front);
-    //console.log(basicConstruct.back);
 
     //making sure the inquirer prompt doesnt exceed beyond the questions available in the flashCards for qBasic
     if (basicCount < basicLength) {
+        //using Object.keys and .values to set the variables and creating a new constructor from BasicCard
+        var basicFirst = Object.keys(flashCards.qBasic)[basicCount];
+        //console.log(basicConstruct);
+        var basicSecond = Object.values(flashCards.qBasic)[basicCount];
+        //console.log(basicConstruct);
+        var basicConstruct = BasicCard(basicFirst, basicSecond);
+        //console.log(basicConstruct.front);
+        //console.log(basicConstruct.back);
         inquirer.prompt([{
             name: "question",
             message: basicConstruct.front
@@ -83,19 +83,14 @@ var clozeCount = 0;
 
 
 var clozeGame = function() {
-    //console.log("The count is " + clozeCount);
-    //console.log(qCloze);
-    //using object.keys and values to set the variables and creating a new constructor from ClozeCard
-    //var clozeLength = Object.keys(flashCards.qCloze).length;
-    var first = Object.keys(flashCards.qCloze)[clozeCount];
-    var second = Object.values(flashCards.qCloze)[clozeCount];
-    var construct = ClozeCard(first, second);
-    //console.log(construct.partialText);
-    // console.log(first);
-
-    // console.log(newQ);
-    //making sure counter doesnt exceed 6
-    if (clozeCount < 6) {
+    //getting the length of qCloze object
+    var clozeLength = Object.keys(flashCards.qCloze).length;
+    //making sure counter doesnt exceed beyond the length of the object
+    if (clozeCount < clozeLength) {
+        var first = Object.keys(flashCards.qCloze)[clozeCount];
+        var second = Object.values(flashCards.qCloze)[clozeCount];
+        //using object.keys and values to set the variables and creating a new constructor from ClozeCard
+        var construct = ClozeCard(first, second);
         inquirer.prompt([{
             name: "question",
             message: construct.partialText
@@ -125,9 +120,6 @@ var clozeGame = function() {
     }
 }
 
-//starting game on typing node main.js
-startGame();
-
 var playAgain = function() {
     //checks to see if the user wants to play again
     inquirer.prompt([{
@@ -150,30 +142,5 @@ var playAgain = function() {
     });
 }
 
-//obj.keys
-
-
-
-
-//Testing out .cloze/.fullText/.partialText
-// var superman = ClozeCard("Superman was a kryptonian alien", "kryptonian");
-// var spiderman = ClozeCard("Peter Parker is spiderman", "spiderman");
-// var batman = new BasicCard("Who is batman?", "Bruce Wayne");
-
-// console.log(batman.front);
-// console.log(batman.back);
-
-// console.log(superman);
-// console.log(batman);
-
-// console.log("---------------Superman--------");
-// console.log(superman);
-// console.log(superman.cloze);
-// console.log(superman.fullText);
-// console.log(superman.partialText);
-// console.log("---------------Superman--------");
-
-
-// console.log(spiderman.partialText);
-// console.log(spiderman.cloze);
-// console.log(spiderman.fullText);
+//starting game on typing node main.js
+startGame();

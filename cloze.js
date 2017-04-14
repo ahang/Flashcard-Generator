@@ -1,5 +1,4 @@
 //e.g. "George Washington was the first president of the United States.", "George Washington"
-
 var ClozeCard = function(text, cloze) {
     if (this instanceof ClozeCard) {
         this.text = text;
