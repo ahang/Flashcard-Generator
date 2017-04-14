@@ -38,6 +38,7 @@ var basicCount = 0;
 
 var basicGame = function() {
     //using Object.keys and .values to set the variables and creating a new constructor from BasicCard
+    var basicLength = Object.keys(flashCards.qBasic).length;
     var basicFirst = Object.keys(flashCards.qBasic)[basicCount];
     //console.log(basicConstruct);
     var basicSecond = Object.values(flashCards.qBasic)[basicCount];
@@ -47,7 +48,7 @@ var basicGame = function() {
     //console.log(basicConstruct.back);
 
     //making sure the inquirer prompt doesnt exceed beyond the 7 questions available
-    if (basicCount < 6) {
+    if (basicCount < basicLength) {
         inquirer.prompt([{
             name: "question",
             message: basicConstruct.front
@@ -85,6 +86,7 @@ var clozeGame = function() {
     //console.log("The count is " + clozeCount);
     //console.log(qCloze);
     //using object.keys and values to set the variables and creating a new constructor from ClozeCard
+    var clozeLength = Object.keys(flashCards.qCloze).length;
     var first = Object.keys(flashCards.qCloze)[clozeCount];
     var second = Object.values(flashCards.qCloze)[clozeCount];
     var construct = ClozeCard(first, second);
@@ -93,7 +95,7 @@ var clozeGame = function() {
 
     // console.log(newQ);
     //making sure counter doesnt exceed 6
-    if (clozeCount < 6) {
+    if (clozeCount < clozeLength) {
         inquirer.prompt([{
             name: "question",
             message: construct.partialText
@@ -101,11 +103,11 @@ var clozeGame = function() {
             var ans = response.question.toLowerCase().trim();
             //console.log(response);
             if (ans === construct.cloze.toLowerCase()) {
-                console.log("That is correct. " + construct.partialText.replace("...", "'" + construct.cloze + "'"));
+                console.log("That is correct. " + construct.fullText);
                 console.log("========================================");
                 questionsCorrect++;
             } else {
-                console.log("That is not correct. " + construct.partialText.replace("...", "'" + construct.cloze + "'"));
+                console.log("That is not correct. " + construct.fullText);
                 console.log("========================================");
                 questionsIncorrect++;
             }
