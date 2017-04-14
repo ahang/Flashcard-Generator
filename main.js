@@ -81,7 +81,6 @@ var basicGame = function() {
 
 var clozeCount = 0;
 
-
 var clozeGame = function() {
     //getting the length of qCloze object
     var clozeLength = Object.keys(flashCards.qCloze).length;
