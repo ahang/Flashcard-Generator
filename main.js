@@ -47,7 +47,7 @@ var basicGame = function() {
     //console.log(basicConstruct.front);
     //console.log(basicConstruct.back);
 
-    //making sure the inquirer prompt doesnt exceed beyond the 7 questions available
+    //making sure the inquirer prompt doesnt exceed beyond the questions available in the flashCards for qBasic
     if (basicCount < basicLength) {
         inquirer.prompt([{
             name: "question",

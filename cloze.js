@@ -9,7 +9,6 @@ var ClozeCard = function(text, cloze) {
     } else {
         return new ClozeCard(text, cloze);
     }
-
 }
 
 module.exports = ClozeCard;
